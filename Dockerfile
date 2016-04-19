@@ -51,9 +51,6 @@ RUN scripts/install-sdk.sh
 # Tweak standlone.js conf
 RUN sed -i -e 's_127.0.0.1_0.0.0.0_g' /cloud9/configs/standalone.js 
 
-# Add supervisord conf
-ADD conf/cloud9.conf /etc/supervisor/conf.d/
-
 # ------------------------------------------------------------------------------
 # Add volumes
 RUN mkdir /workspace
@@ -80,6 +77,9 @@ RUN ln -s /var/www /workspace
 # Expose ports.
 EXPOSE 80
 EXPOSE 3000
+
+# Add supervisord conf
+ADD conf/cloud9.conf /etc/supervisor/conf.d/
 
 # ------------------------------------------------------------------------------
 # Start supervisor, define default command.
